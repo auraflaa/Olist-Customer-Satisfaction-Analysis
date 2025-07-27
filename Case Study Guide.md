@@ -51,7 +51,8 @@ You will produce a report with the following deliverables:
 ---
 ### **Prepare**
 
-For this project, you will use a public dataset that mirrors real-world e-commerce transactions. A highly recommended dataset is the **Online Retail II Data Set** from the UCI Machine Learning Repository. It contains transactional data from a UK-based online retailer.
+For this project, you will use a public dataset that mirrors real-world e-commerce transactions. You can download the recommended dataset here:
+* **[Online Retail II Data Set](https://archive.ics.uci.edu/dataset/502/online+retail+ii)** from the UCI Machine Learning Repository.
 
 (Note: This public dataset will serve as a proxy for StyleSpire's internal data. For this case study, it is appropriate and will allow you to answer the business questions. Due to data privacy policies, you cannot use personally identifiable information to connect purchases directly to individuals.)
 
@@ -64,7 +65,14 @@ For this project, you will use a public dataset that mirrors real-world e-commer
 ---
 ### **Process**
 
-You will now process your data for analysis. Check for errors, handle missing values, and transform the data as needed. Document every step of your cleaning process.
+You will now process your data for analysis. Choose your tools, check for errors, handle missing values, and transform the data as needed. Document every step of your cleaning process. Some recommended tools for this project include:
+* **Programming Languages:**
+    * [**Python**](https://www.python.org/) with libraries like [**Pandas**](https://pandas.pydata.org/), [**Matplotlib**](https://matplotlib.org/), and [**Seaborn**](https://seaborn.pydata.org/).
+    * [**R**](https://www.r-project.org/) with [**RStudio Desktop**](https://posit.co/download/rstudio-desktop/).
+* **Database Tools:**
+    * Any SQL-based platform like [**PostgreSQL**](https://www.postgresql.org/) or [**MySQL**](https://www.mysql.com/).
+* **Spreadsheet Software:**
+    * Microsoft Excel or Google Sheets.
 
 **Case Study Roadmap - Process**
 
@@ -97,7 +105,11 @@ Now that your data is stored and prepared, start your analysis. Your goal is to 
 ---
 ### **Share**
 
-Now it’s time to communicate your findings. Create professional and polished data visualizations that tell a clear story. Your visuals should be designed to effectively communicate your key insights to the executive team.
+Now it’s time to communicate your findings. Create professional and polished data visualizations that tell a clear story. Recommended tools for creating your visualizations include:
+* Python libraries like Matplotlib and Seaborn.
+* [**Tableau Public**](https://public.tableau.com/en-us/s/) (a free version of the powerful BI tool).
+* [**Microsoft Power BI Desktop**](https://powerbi.microsoft.com/en-us/desktop/) (also free to use).
+* R libraries like `ggplot2`.
 
 **Case Study Roadmap - Share**
 
@@ -108,7 +120,8 @@ Now it’s time to communicate your findings. Create professional and polished d
 ---
 ### **Act**
 
-Finally, synthesize your analysis into actionable recommendations. Based on your findings, what are the top three things StyleSpire should do to convert one-time buyers into repeat customers?
+Finally, synthesize your analysis into actionable recommendations. Based on your findings, what are the top three things StyleSpire should do to convert one-time buyers into repeat customers? Create your portfolio and add this case study to it.
+* A great place to host your project code, analysis, and documentation is [**GitHub**](https://github.com/).
 
 **Case Study Roadmap - Act**
 
