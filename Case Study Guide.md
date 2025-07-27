@@ -1,130 +1,61 @@
-# Case Study: How Can an E-commerce Store Convert One-Time Buyers into Loyal Customers?
+# Case Study: Improving Customer Satisfaction on the Olist E-commerce Marketplace
 
-### 1. Introduction
+### 1. Scenario
 
-Welcome to the StyleSpire sales analysis case study. In this project, you will act as a Junior Data Analyst for **StyleSpire**, a fictional e-commerce company. Your mission is to analyze customer purchasing behavior to drive key business decisions. To answer the key business questions, you will follow the six steps of the data analysis process: **Ask, Prepare, Process, Analyze, Share, and Act**. The provided roadmaps will help guide you through each phase of the project.
+You are a new Data Analyst at **Olist**, one of Brazil's largest e-commerce marketplaces. Olist operates as a platform that connects thousands of small businesses (sellers) to customers across the country. Your role is on the **Operations & Strategy Team**, which is focused on improving the overall health and efficiency of the marketplace.
 
-### 2. Scenario
+The Head of Strategy has identified that customer satisfaction is a key driver of repeat business and long-term growth. However, internal reports suggest that negative reviews are on the rise, and they seem to be linked to shipping and delivery issues. Your task is to analyze the complete order lifecycle—from purchase to delivery and subsequent review—to identify the main causes of poor customer satisfaction. Your findings will guide strategic decisions on which operational areas to improve, which sellers to support, and how to set better delivery expectations for customers.
 
-You are a junior data analyst working on the marketing analytics team at StyleSpire, an online retailer of modern apparel and accessories. The Director of Marketing is convinced that the company's long-term profitability hinges on increasing customer loyalty and retention. Therefore, your team's primary goal is to understand the differences in purchasing behavior between **one-time buyers** and **repeat customers**. With these insights, the team will develop a new, targeted marketing strategy aimed at converting one-time buyers into valuable repeat customers. Your analysis and recommendations must be supported by clear data visualizations and compelling insights to gain approval from the executive team.
+### 2. The Business Task (Ask)
 
-### 3. Characters and Teams
-* **StyleSpire**: A growing e-commerce company that offers a wide range of trendy apparel, shoes, and accessories. It has a significant customer base across several countries but wants to improve its customer retention rate.
-* **Isabella Rossi**: The Director of Marketing and your manager. She is focused on developing data-driven campaigns that increase customer lifetime value (CLV) and foster brand loyalty.
-* **Marketing Analytics Team**: A team of data analysts responsible for collecting, analyzing, and reporting on sales and customer data to guide marketing strategy. You are a new member of this team.
-* **Executive Team**: The detail-oriented executive team that will review your findings and decide whether to approve the new marketing program.
+Your manager has assigned you a primary business question: **"What are the key drivers of negative customer reviews, and how can we use these insights to improve the overall customer experience?"**
 
-### 4. About the Company
+To answer this, your analysis should investigate these guiding questions:
+1.  How does the actual delivery time compared to the estimated delivery time impact customer review scores?
+2.  Are there specific product categories that consistently receive lower review scores?
+3.  Do sellers from certain geographic regions have a higher rate of negative reviews or shipping delays?
 
-Founded in 2018, StyleSpire has grown into a popular e-commerce platform with a large catalog of products. The company’s marketing strategy has so far focused on broad customer acquisition through social media and general online advertising.
+### 3. The Data (Prepare)
 
-Customers are currently categorized into two simple groups: **one-time buyers** (customers who have made only one purchase) and **repeat customers** (customers who have made two or more purchases).
+You will use the official **Brazilian E-commerce Public Dataset by Olist**. This is a real, anonymized dataset hosted on Kaggle, a popular platform for data science projects.
 
-StyleSpire’s finance analysts recently concluded that repeat customers are far more profitable for the business, as their average order value and lifetime value are significantly higher than those of one-time buyers. While the current strategy attracts many new customers, Isabella Rossi believes that a focused effort to convert one-time buyers is the key to sustainable growth. She notes that these customers are already familiar with the brand and have shown interest by making an initial purchase.
+* **Primary Dataset Link:** [**Brazilian E-commerce Public Dataset by Olist on Kaggle**](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
-Rossi has set a clear goal: **Design marketing strategies aimed at converting one-time buyers into repeat customers**. To do this, the team needs to analyze historical sales data to understand how these customer groups differ.
+This dataset is a collection of 9 separate `.csv` files that are linked together, similar to tables in a database. A key part of your project will be understanding this relationship and joining the files. The most important files for this analysis are:
+* `olist_orders_dataset.csv`
+* `olist_order_reviews_dataset.csv`
+* `olist_order_items_dataset.csv`
+* `olist_products_dataset.csv`
+* `olist_sellers_dataset.csv`
 
----
-### **Ask**
+### 4. The Tools (Process)
 
-Three questions guide this marketing initiative:
-1.  How do one-time buyers and repeat customers differ in their purchasing behaviors?
-2.  What factors might motivate a one-time buyer to make a second purchase?
-3.  How can StyleSpire leverage digital media and promotions to encourage repeat purchases?
+During the processing phase, you will need to clean the data and merge these files. This is a critical step that recruiters love to see. Here are some recommended tools:
 
-Isabella Rossi has assigned you the first question to answer: **How do one-time buyers and repeat customers differ in their purchasing behaviors?**
-
-You will produce a report with the following deliverables:
-1.  A clear statement of the business task
-2.  A description of all data sources used
-3.  Documentation of any data cleaning or manipulation
-4.  A summary of your analysis
-5.  Supporting visualizations and key findings
-6.  Your top three recommendations based on your analysis
-
-**Case Study Roadmap - Ask**
-
-| Guiding Questions                                                    | Key Tasks                                         | Deliverable                         |
-| :-------------------------------------------------------------------- | :------------------------------------------------ | :---------------------------------- |
-| What is the problem you are trying to solve? <br> How can your insights drive business decisions? | Identify the business task. <br> Consider key stakeholders. | A clear statement of the business task |
-
----
-### **Prepare**
-
-For this project, you will use a public dataset that mirrors real-world e-commerce transactions. You can download the recommended dataset here:
-* **[Online Retail II Data Set](https://archive.ics.uci.edu/dataset/502/online+retail+ii)** from the UCI Machine Learning Repository.
-
-(Note: This public dataset will serve as a proxy for StyleSpire's internal data. For this case study, it is appropriate and will allow you to answer the business questions. Due to data privacy policies, you cannot use personally identifiable information to connect purchases directly to individuals.)
-
-**Case Study Roadmap - Prepare**
-
-| Guiding Questions                                                                                                                              | Key Tasks                                                                                              | Deliverable                             |
-| :--------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------- | :-------------------------------------- |
-| Where is your data located?<br>How is the data organized?<br>Are there issues with bias or credibility in this data?<br>How are you addressing licensing, privacy, and security?<br>How did you verify the data's integrity? | Download data and store it appropriately.<br>Identify how it's organized.<br>Sort and filter the data.<br>Determine the credibility of the data. | A description of all data sources used |
-
----
-### **Process**
-
-You will now process your data for analysis. Choose your tools, check for errors, handle missing values, and transform the data as needed. Document every step of your cleaning process. Some recommended tools for this project include:
 * **Programming Languages:**
-    * [**Python**](https://www.python.org/) with libraries like [**Pandas**](https://pandas.pydata.org/), [**Matplotlib**](https://matplotlib.org/), and [**Seaborn**](https://seaborn.pydata.org/).
-    * [**R**](https://www.r-project.org/) with [**RStudio Desktop**](https://posit.co/download/rstudio-desktop/).
+    * [**Python**](https://www.python.org/) with libraries like [**Pandas**](https://pandas.pydata.org/) (for data manipulation) and [**Jupyter Notebook**](https://jupyter.org/) (for structuring your analysis).
+    * [**R**](https://www.r-project.org/) with [**RStudio Desktop**](https://posit.co/download/rstudio-desktop/) and the `tidyverse` package.
 * **Database Tools:**
-    * Any SQL-based platform like [**PostgreSQL**](https://www.postgresql.org/) or [**MySQL**](https://www.mysql.com/).
-* **Spreadsheet Software:**
-    * Microsoft Excel or Google Sheets.
+    * You could also load the data into a SQL database like [**PostgreSQL**](https://www.postgresql.org/) and use `JOIN` statements to combine the tables.
 
-**Case Study Roadmap - Process**
+### 5. Analysis & Sharing
 
-| Guiding Questions                                                                                                     | Key Tasks                                                                          | Deliverable                                        |
-| :-------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------- | :------------------------------------------------- |
-| What tools are you choosing and why?<br>What steps have you taken to ensure that your data is clean?<br>Have you documented your cleaning process so you can review and share those results? | Check the data for errors.<br>Choose your tools.<br>Transform the data so you can work with it effectively. | Documentation of any cleaning or manipulation of data |
+Your analysis should focus on correlating operational data (like shipping times) with customer sentiment data (review scores). Once your analysis is complete, you will need to create visualizations to share your findings.
 
----
-### **Analyze**
+* **Suggested Analysis:**
+    * Calculate a "delivery delta" by subtracting the actual delivery date from the estimated delivery date.
+    * Group orders by review score (e.g., 1-2 stars = "Negative", 3 = "Neutral", 4-5 = "Positive").
+    * Analyze the average delivery delta for each review score group.
+    * Investigate if certain product categories or seller regions correlate with lower scores.
+* **Visualization Tools:**
+    * Python libraries like [**Matplotlib**](https://matplotlib.org/) and [**Seaborn**](https://seaborn.pydata.org/).
+    * [**Tableau Public**](https://public.tableau.com/en-us/s/) or [**Microsoft Power BI**](https://powerbi.microsoft.com/en-us/desktop/) for creating interactive dashboards.
 
-Now that your data is stored and prepared, start your analysis. Your goal is to identify the key differences between one-time buyers and repeat customers.
+### 6. Deliverables (Act)
 
-**Some suggested calculations include:**
-* Calculate the total price for each transaction line.
-* Aggregate data by customer to identify one-time vs. repeat buyers.
-* Conduct descriptive analysis of each group:
-    * Average Order Value (AOV).
-    * Average number of items per order.
-    * Most frequently purchased products or product categories.
-    * Sales distribution by country.
-* Analyze purchasing patterns by day of the week or month to find trends.
-* Create pivot tables to compare metrics between the two customer groups.
-
-**Case Study Roadmap - Analyze**
-
-| Guiding Questions                                                                                                                                                         | Key Tasks                                                                            | Deliverable                  |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------- | :--------------------------- |
-| How should you organize your data to perform analysis on it?<br>What surprises did you discover in the data?<br>What trends or relationships did you find in the data?<br>How will these insights help answer your business questions? | Aggregate your data so it's useful and accessible.<br>Perform calculations.<br>Identify trends and relationships. | A summary of your analysis |
-
----
-### **Share**
-
-Now it’s time to communicate your findings. Create professional and polished data visualizations that tell a clear story. Recommended tools for creating your visualizations include:
-* Python libraries like Matplotlib and Seaborn.
-* [**Tableau Public**](https://public.tableau.com/en-us/s/) (a free version of the powerful BI tool).
-* [**Microsoft Power BI Desktop**](https://powerbi.microsoft.com/en-us/desktop/) (also free to use).
-* R libraries like `ggplot2`.
-
-**Case Study Roadmap - Share**
-
-| Guiding Questions                                                                                                                                                         | Key Tasks                                                                                                       | Deliverable                                |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------- | :----------------------------------------- |
-| What story does your data tell?<br>How do your findings relate to the original question?<br>Who is your audience? What is the best way to communicate with them?<br>Can data visualization help you share your findings? | Determine the best way to share your findings.<br>Create effective data visualizations.<br>Present your findings.<br>Ensure your work is accessible. | Supporting visualizations and key findings |
-
----
-### **Act**
-
-Finally, synthesize your analysis into actionable recommendations. Based on your findings, what are the top three things StyleSpire should do to convert one-time buyers into repeat customers? Create your portfolio and add this case study to it.
-* A great place to host your project code, analysis, and documentation is [**GitHub**](https://github.com/).
-
-**Case Study Roadmap - Act**
-
-| Guiding Questions                                                                                                                                                   | Key Tasks                                                                    | Deliverable                                        |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :--------------------------------------------------------------------------- | :------------------------------------------------- |
-| What is your final conclusion based on your analysis?<br>How could your team and business apply your insights?<br>What next steps would you or your stakeholders take based on your findings? | Create your portfolio.<br>Add your case study.<br>Practice presenting your case study. | Your top three recommendations based on your analysis |
+Your final project should be a detailed report, dashboard, or presentation that includes:
+1.  A clear summary of the business problem and your approach.
+2.  Documentation of your data cleaning, preparation, and merging process. This is very important.
+3.  Key visualizations showing the relationship between delivery performance, product category, and customer satisfaction.
+4.  **Three actionable recommendations** for the Olist strategy team.
+5.  A link to your project on your portfolio, hosted on a platform like [**GitHub**](https://github.com/).
