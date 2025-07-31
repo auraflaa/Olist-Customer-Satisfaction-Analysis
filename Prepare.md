@@ -1,0 +1,29 @@
+## 3. Prepare
+
+### Data Source
+The data used for this analysis is the **Brazilian E-commerce Public Dataset by Olist**, a real, anonymized dataset made available on Kaggle. It contains information on 100,000 orders made at multiple marketplaces in Brazil from 2016 to 2018.
+
+* **Source:** [Brazilian E-commerce Public Dataset by Olist on Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+* **Licensing:** The dataset is made available under the CC BY-NC-SA 4.0 license, which permits non-commercial use. This project adheres to these terms.
+
+### Dataset Description
+The dataset is relational and split across nine separate `.csv` files, simulating a real-world database structure. For this analysis, the following key files were used to trace the order lifecycle from purchase to review:
+
+* `olist_orders_dataset.csv`: Contains high-level information about each order, including `order_id`, `customer_id`, and various timestamps (purchase, approval, shipping, delivery).
+* `olist_order_reviews_dataset.csv`: Contains customer-submitted reviews for each order, including the `review_score`.
+* `olist_order_items_dataset.csv`: Contains product-level information for each order, linking `order_id` to `product_id` and `seller_id`.
+* `olist_products_dataset.csv`: Contains details about the products, such as `product_category_name`.
+* `olist_sellers_dataset.csv`: Contains details about the sellers, including their geographic location (`seller_city` and `seller_state`).
+* `product_category_name_translation.csv`: A translation file to map Portuguese product category names to English.
+
+### Tools Used
+* **Spreadsheet:** Used for initial data viewing and familiarization with the dataset's structure and contents.
+* **BigQuery (SQL):** Used as the primary tool for data warehousing. The raw `.csv` files were loaded into BigQuery, where SQL queries were used to perform complex joins across multiple tables and conduct initial data aggregation.
+* **R:** Used as the primary language for in-depth statistical analysis, data cleaning, transformation, and creating the visualizations for the final report.
+
+### Initial Data Assessment
+A preliminary assessment of the data was conducted to understand its structure, identify potential quality issues, and confirm its suitability for the analysis.
+
+* **Data Integrity:** The relational structure is sound, with key identifiers like `order_id`, `customer_id`, and `product_id` allowing for reliable joins between the different files.
+* **Missing Values:** Several columns, particularly timestamp columns like `order_delivered_customer_date`, were found to have missing values. These correspond to orders that were not yet delivered or were canceled at the time the dataset was created and were handled during the processing phase.
+* **Data Quality Limitation:** A significant data quality issue was identified in the `olist_geolocation_dataset.csv` file. The `geolocation_city` column contains over 8,000 unique entries with numerous typographical errors and inconsistencies. Due to the scale of these errors, manual cleaning was deemed impractical. Therefore, for the geographic analysis, the more reliable `geolocation_state` column was used to ensure a statistically sound approach.
