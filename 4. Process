@@ -1,0 +1,94 @@
+# 4. Process
+
+### Methodology Overview
+The goal of this phase was to transform the raw, fragmented data into a single, reliable dataset suitable for analysis. My methodology focused on three key areas: integrating disparate data sources, performing targeted data cleaning to address identified quality issues, and enriching the dataset with custom features to directly answer the business questions. All data wrangling was performed in **BigQuery** using SQL.
+
+---
+
+### Data Integration and Cleaning
+
+A clean dataset is the foundation of any trustworthy analysis. The following steps were taken to build a single source of truth and ensure its integrity.
+
+1.  **Data Integration:** The first step was to create a master table by joining the six core datasets (`orders`, `reviews`, `order_items`, `products`, `sellers`, and `product_category_name_translation`) using their relational keys (`order_id`, `product_id`, etc.).
+
+2.  **Solving for Incomplete Category Data:** During exploration, I discovered the category translation table was incomplete. To prevent data loss, I used a **`RIGHT JOIN`** and the **`IFNULL()`** function. This strategy ensures that all products are included in the analysis, using the original Portuguese category name if an English translation is unavailable.
+
+3.  **Ensuring Geographic Accuracy:** The raw geolocation data contained multiple coordinate entries for a single zip code, which would create duplicates and skew any map-based analysis. I addressed this by using **`AVG(geolocation_lat)`** and **`AVG(geolocation_lng)`** grouped by zip code. This creates a single, stable central point for each geographic area.
+
+4.  **Scoping the Analysis:** To focus on the relevant customer experiences, orders with a status of `canceled` were filtered out. Furthermore, as this is a quantitative analysis, the qualitative `review_comment` fields were excluded.
+
+<details>
+<summary><strong>▶ Click to view the SQL query for Geolocation Correction and Aggregation</strong></summary>
+
+```sql
+SELECT
+  seller_state,
+  seller_zip_code_prefix,
+  AVG(geolocation_lat) AS geolocation_lat,
+  AVG(geolocation_lng) AS geolocation_lng,
+  COUNT(*) AS total_reviews,
+  ROUND(AVG(review_score), 2) as avg_review_score,
+  -- Calculate the percentage of reviews that are 1 or 2 stars
+  ROUND(SAFE_DIVIDE(
+    COUNTIF(review_score <= 2),
+    COUNT(*)
+  ) * 100, 2) AS percentage_negative_reviews
+FROM
+  `olist-customer-analysis.Clean_and_Merged_Datasets.geolocation_distribution_of_reviews`
+GROUP BY
+  seller_state,
+  seller_zip_code_prefix
+ORDER BY
+  seller_state,
+  seller_zip_code_prefix;
+```
+
+</details>
+
+---
+
+### Feature Engineering for Deeper Insights
+
+To move beyond surface-level metrics, I engineered several new features to provide a more nuanced understanding of the customer experience.
+
+* **`delivery_diff_days`**: This feature calculates the difference between the actual and estimated delivery dates. It's the core metric for quantifying delivery performance, showing whether an order was early, on time, or late.
+
+* **`seller_processing_days`**: This feature isolates the seller's performance by calculating the time between the order purchase and shipment. This is crucial for determining whether delays are caused by the seller or the logistics carrier.
+
+* **`delivery_status` & `review_category`**: These categorical flags (`LATE`/`EARLY`, `NEGATIVE`/`POSITIVE`) were created to simplify aggregation and allow for clear, high-level visualizations in Tableau.
+
+These engineered features enabled a direct and measurable analysis of the factors driving customer review scores.
+
+<details>
+<summary><strong>▶ Click to view the Master SQL Query for Feature Engineering</strong></summary>
+
+```sql
+SELECT
+  od.order_id,
+  od.customer_id,
+  DATE_DIFF(od.order_delivered_carrier_date, od.order_purchase_timestamp, DAY) AS seller_processing_days,
+  DATE_DIFF(od.order_delivered_customer_date, od.order_estimated_delivery_date, DAY) AS delivery_diff_days,
+  CASE
+    WHEN DATE_DIFF(od.order_delivered_customer_date, od.order_estimated_delivery_date, DAY) > 0 THEN 'LATE'
+    WHEN DATE_DIFF(od.order_delivered_customer_date, od.order_estimated_delivery_date, DAY) < 0 THEN 'EARLY'
+    ELSE 'ON_TIME'
+  END as delivery_status,
+  ord.review_score,
+  CASE
+    WHEN ord.review_score <= 2 THEN 'NEGATIVE'
+    WHEN ord.review_score = 3 THEN 'NEUTRAL'
+    WHEN ord.review_score >= 4 THEN 'POSITIVE'
+    ELSE 'INVALID'
+  END AS review_category
+FROM
+  `olist-customer-analysis.Brazilian_E_Commerce_Public_Dataset_by_Olist.olist_orders_data` as od
+JOIN
+  `olist-customer-analysis.Brazilian_E_Commerce_Public_Dataset_by_Olist.olist_order_reviews_data` as ord
+  ON od.order_id = ord.order_id
+WHERE
+  od.order_status != 'canceled'
+  AND od.order_delivered_customer_date IS NOT NULL
+  AND od.order_estimated_delivery_date IS NOT NULL;
+```
+
+</details>
