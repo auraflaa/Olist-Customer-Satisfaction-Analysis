@@ -1766,11 +1766,82 @@ $(document).ready(function ()  {
 </script>
 
 </body>
-  <footer style="margin-top: 2em; text-align: center; font-size: 1em;">
-  View the source code on 
-  <a href="https://github.com/auraflaa/Olist-Customer-Satisfaction-Analysis" target="_blank" rel="noopener">
-    GitHub
-  </a>
+  <footer class="project-footer">
+  <h4>Project Assets & Source Code</h4>
+  <ul class="footer-links">
+    <li>
+      <a href="https://github.com/auraflaa/Olist-Customer-Satisfaction-Analysis" target="_blank" rel="noopener">
+        <!-- GitHub Icon SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" role="img">
+          <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+        </svg>
+        GitHub
+      </a>
+    </li>
+    <li>
+      <a href="https://public.tableau.com/views/OlistDataAnalysis_17541543662870/TheBusinessProblem?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" rel="noopener">
+        <!-- Tableau Icon SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img">
+            <path d="M2 12h5v10H2V12zm6 4h5v6h-5v-6zm6-8h5v14h-5V8zm6-4h5v18h-5V4z"></path>
+        </svg>
+        Tableau
+      </a>
+    </li>
+    <li>
+      <a href="https://console.cloud.google.com/bigquery?inv=1&invt=Ab4UiQ&project=olist-customer-analysis" target="_blank" rel="noopener">
+        <!-- BigQuery Icon SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.28 14.26l-3.03-3.03c-.39-.39-.39-1.02 0-1.41l3.03-3.03c.78-.78 2.05-.78 2.83 0l3.03 3.03c.39.39.39 1.02 0 1.41l-3.03 3.03c-.78.79-2.05.79-2.83 0z"></path>
+            <path d="M11.41 12l2.12-2.12-2.12-2.12-2.12 2.12zM12.12 14.12l2.12-2.12-2.12-2.12-2.12 2.12z"></path>
+        </svg>
+        BigQuery
+      </a>
+    </li>
+  </ul>
 </footer>
+
+<style>
+  .project-footer {
+    margin-top: 4em;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #555;
+    border-top: 1px solid #eaeaea;
+  }
+  .project-footer h4 {
+    margin: 0 0 1em 0;
+    font-size: 1.1em;
+    font-weight: 600;
+  }
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .footer-links a {
+    color: #007bff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    font-size: 1em;
+    transition: color 0.2s ease-in-out;
+  }
+  .footer-links a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+  .footer-links svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+</style>
 </html>
+
 
