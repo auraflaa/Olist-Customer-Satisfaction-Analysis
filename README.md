@@ -1,61 +1,54 @@
-# Case Study: Improving Customer Satisfaction on the Olist E-commerce Marketplace
+# Olist Customer Satisfaction Analysis
 
-### 1. Scenario
+## 1. Scenario & Introduction
 
-You are a new Data Analyst at **Olist**, one of Brazil's largest e-commerce marketplaces. Olist operates as a platform that connects thousands of small businesses (sellers) to customers across the country. Your role is on the **Operations & Strategy Team**, which is focused on improving the overall health and efficiency of the marketplace.
+As a Data Analyst on the Operations & Strategy Team at Olist, I was tasked with analyzing the complete order lifecycle to identify the main causes of poor customer satisfaction. This analysis aims to provide data-driven insights to guide strategic decisions on improving the overall health and efficiency of the marketplace.
 
-The Head of Strategy has identified that customer satisfaction is a key driver of repeat business and long-term growth. However, internal reports suggest that negative reviews are on the rise, and they seem to be linked to shipping and delivery issues. Your task is to analyze the complete order lifecycle—from purchase to delivery and subsequent review—to identify the main causes of poor customer satisfaction. Your findings will guide strategic decisions on which operational areas to improve, which sellers to support, and how to set better delivery expectations for customers.
+*For a comprehensive deep dive into Olist's business model, history, and competitive landscape, please see the [**full business analysis here**](./Olist_Business_Analysis.md).*
 
-### 2. The Business Task (Ask)
+---
 
-Your manager has assigned you a primary business question: **"What are the key drivers of negative customer reviews, and how can we use these insights to improve the overall customer experience?"**
+## 2. The Business Task (Ask)
 
-To answer this, your analysis should investigate these guiding questions:
-1.  How does the actual delivery time compared to the estimated delivery time impact customer review scores?
-2.  Are there specific product categories that consistently receive lower review scores?
-3.  Do sellers from certain geographic regions have a higher rate of negative reviews or shipping delays?
+The central business question for this analysis is: **"What are the key drivers of negative customer reviews, and how can we use these insights to improve the overall customer experience?"**
 
-### 3. The Data (Prepare)
+This was investigated by focusing on three guiding questions:
+1.  How does delivery performance impact review scores?
+2.  Do certain product categories receive more negative reviews?
+3.  Are there geographic "hotspots" of poor seller performance?
 
-You will use the official **Brazilian E-commerce Public Dataset by Olist**. This is a real, anonymized dataset hosted on Kaggle, a popular platform for data science projects.
+---
 
-* **Primary Dataset Link:** [**Brazilian E-commerce Public Dataset by Olist on Kaggle**](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+## 3. Methodology (Prepare & Process)
 
-This dataset is a collection of 9 separate `.csv` files that are linked together, similar to tables in a database. A key part of your project will be understanding this relationship and joining the files. The most important files for this analysis are:
-* `olist_orders_dataset.csv`
-* `olist_order_reviews_dataset.csv`
-* `olist_order_items_dataset.csv`
-* `olist_products_dataset.csv`
-* `olist_sellers_dataset.csv`
+The analysis was conducted using a multi-tool workflow to mirror a professional data environment.
 
-### 4. The Tools (Process)
+* **Data Warehousing (BigQuery & SQL):** The raw, multi-table dataset from Kaggle was loaded into BigQuery. SQL was used to perform all data cleaning, joining, and feature engineering. Key steps included handling incomplete data, ensuring geographic accuracy by averaging coordinates, and creating new features like `delivery_diff_days` and `seller_processing_days`.
+* **Analysis & Visualization (R & Tableau):** The final, cleaned datasets were analyzed and visualized using R (`ggplot2`) to create static plots for a reproducible report and Tableau for an interactive dashboard.
 
-During the processing phase, you will need to clean the data and merge these files. This is a critical step that recruiters love to see. Here are some recommended tools:
+---
 
-* **Programming Languages:**
-    * [**Python**](https://www.python.org/) with libraries like [**Pandas**](https://pandas.pydata.org/) (for data manipulation) and [**Jupyter Notebook**](https://jupyter.org/) (for structuring your analysis).
-    * [**R**](https://www.r-project.org/) with [**RStudio Desktop**](https://posit.co/download/rstudio-desktop/) and the `tidyverse` package.
-* **Database Tools:**
-    * You could also load the data into a SQL database like [**PostgreSQL**](https://www.postgresql.org/) and use `JOIN` statements to combine the tables.
+## 4. Analysis & Sharing
 
-### 5. Analysis & Sharing
+The analysis revealed three primary drivers of customer dissatisfaction. The findings were consolidated into two key deliverables designed for different audiences: a comprehensive, reproducible report for a technical audience, and an interactive dashboard for business stakeholders.
 
-Your analysis should focus on correlating operational data (like shipping times) with customer sentiment data (review scores). Once your analysis is complete, you will need to create visualizations to share your findings.
+### Key Findings
+1.  **Late Delivery is the Primary Cause:** The data shows an undeniable correlation between delivery delays and negative reviews.
+2.  **Product Quality is a Secondary Factor:** Certain product categories consistently underperform, suggesting issues with product quality or damage.
+3.  **Seller Performance Varies Geographically:** Seller performance is not uniform, with clear "hotspots" of negative reviews concentrated in specific regions.
 
-* **Suggested Analysis:**
-    * Calculate a "delivery delta" by subtracting the actual delivery date from the estimated delivery date.
-    * Group orders by review score (e.g., 1-2 stars = "Negative", 3 = "Neutral", 4-5 = "Positive").
-    * Analyze the average delivery delta for each review score group.
-    * Investigate if certain product categories or seller regions correlate with lower scores.
-* **Visualization Tools:**
-    * Python libraries like [**Matplotlib**](https://matplotlib.org/) and [**Seaborn**](https://seaborn.pydata.org/).
-    * [**Tableau Public**](https://public.tableau.com/en-us/s/) or [**Microsoft Power BI**](https://powerbi.microsoft.com/en-us/desktop/) for creating interactive dashboards.
+### Final Deliverables
+* **[View the full hosted report (index.html)](https://auraflaa.github.io/Olist-Customer-Satisfaction-Analysis/)**
+* **[Explore the interactive Tableau Dashboard](https://public.tableau.com/views/OlistDataAnalysis_17541543662870/TheBusinessProblem?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)**
+* **[Access the public BigQuery Project](https://console.cloud.google.com/bigquery?inv=1&invt=Ab4UiQ&project=olist-customer-analysis)**
 
-### 6. Deliverables (Act)
+---
 
-Your final project should be a detailed report, dashboard, or presentation that includes:
-1.  A clear summary of the business problem and your approach.
-2.  Documentation of your data cleaning, preparation, and merging process. This is very important.
-3.  Key visualizations showing the relationship between delivery performance, product category, and customer satisfaction.
-4.  **Three actionable recommendations** for the Olist strategy team.
-5.  A link to your project on your portfolio, hosted on a platform like [**GitHub**](https://github.com/).
+## 5. Recommendations (Act)
+
+Based on the findings, three actionable recommendations are proposed:
+
+1.  **Launch a Tiered Seller Performance Program:** Incentivize and reward sellers who consistently ship orders quickly to directly address the primary cause of negative reviews.
+2.  **Conduct a Targeted Quality Audit:** Initiate a quality review of the top 3-5 underperforming product categories to address issues beyond shipping.
+3.  **Optimize Regional Logistics:** Re-evaluate and strengthen logistics partnerships in the identified geographic hotspots to improve delivery reliability.
+
