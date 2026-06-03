@@ -1,6 +1,13 @@
-# Olist Customer Satisfaction Analysis
+<div align="center">
 
+# Olist Customer Satisfaction Analysis
 ## 1. Scenario & Introduction
+
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) [![HTML](https://img.shields.io/badge/HTML-Static-orange.svg)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+
+</div>
+
+---
 
 As a Data Analyst on the Operations & Strategy Team at Olist, I was tasked with analyzing the complete order lifecycle to identify the main causes of poor customer satisfaction. This analysis aims to provide data-driven insights to guide strategic decisions on improving the overall health and efficiency of the marketplace.
 
